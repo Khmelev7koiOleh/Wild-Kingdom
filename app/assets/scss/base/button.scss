@@ -1,0 +1,46 @@
+@use "sass:math";
+@use "@/assets/scss/functions" as *;
+@use "@/assets/scss/style" as *;
+.button {
+  //   background: url("/img/button.png") center no-repeat;
+  display: inline-flex;
+  //   text-white
+  // color: $mainColor;
+  padding: toRem(10) toRem(40);
+  //   border-radius: toRem(50);
+  font-weight: 300;
+  font-size: $fontSize;
+  line-height: 156.25%;
+  text-decoration: none;
+
+  @media (any-hover: hover) {
+    &:hover {
+      cursor: pointer;
+      // opacity: 0.8;
+      // border: toRem(1) solid red;
+    }
+  }
+  &--border {
+    background: transparent;
+    border: 1px solid $bgGold;
+    color: $bgGold;
+    @media (max-width: 767.98px) {
+      color: #fff;
+      background-color: transparent;
+      border: 1px solid #fff;
+      z-index: 10;
+    }
+    @media (any-hover: hover) {
+      &:hover {
+        cursor: pointer;
+        opacity: 0.8;
+        color: $mainColor;
+        background: url("/img/button.png") center no-repeat;
+        border: 1px solid transparent;
+      }
+    }
+  }
+  &--fw {
+    width: 100%;
+  }
+}

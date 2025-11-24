@@ -1,0 +1,38 @@
+// head part of the block
+@use "sass:math";
+@use "@/assets/scss/functions" as *;
+@use "@/assets/scss/style" as *;
+.block-header {
+  display: grid;
+  gap: toRem(20);
+  justify-items: start;
+  &__label {
+    // color: #9d875c;
+    color: $goldColor;
+    font-family: "Italiana";
+    line-height: 156.25%;
+    text-transform: capitalize;
+  }
+
+  &__title {
+    color: #9d875c;
+    text-transform: capitalize;
+    font-family: "Italiana";
+    font-size: toRem(48);
+  }
+
+  &__text {
+    display: grid;
+    gap: toRem(20);
+    line-height: 156.25%;
+    blockquote {
+      font-style: italic;
+    }
+  }
+
+  &__button {
+    padding: toRem(10) toRem(40);
+    border-radius: toRem(50);
+    background: url("/img/button.png") center no-repeat;
+  }
+}

@@ -1,0 +1,20 @@
+@mixin adaptiveValue(
+  $property,
+  $startSize,
+  $minSize,
+  $maxSize,
+  $minWidth,
+  $maxWidth
+) {
+  #{$property}: clamp(
+    toRem($minSize),
+    calc(
+      toRem($minSize) +
+        (
+          toRem($startSize - $minSize) *
+            ((100vw - #{$minWidth}px) / (#{$maxWidth - $minWidth}))
+        )
+    ),
+    toRem($maxSize)
+  );
+}
