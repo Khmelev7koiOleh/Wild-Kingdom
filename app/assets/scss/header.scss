@@ -164,7 +164,7 @@
   align-items: center;
   color: $bgGold;
   column-gap: toRem(47);
-  @include adaptiveValue("column-gap", 47, 20, 0, $containerWidth, 767.98);
+
   @media (max-width: 767.98px) {
     z-index: 20;
     padding: toRem(15);

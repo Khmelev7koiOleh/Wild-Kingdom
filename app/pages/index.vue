@@ -1,7 +1,12 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import HeroSection from "../components/HeroSecition.vue";
+</script>
 
 <template>
   <div class="wrapper">
+    <main class="page">
+      <HeroSection />
+    </main>
     <!-- <h1>Welcome to my index page!</h1> -->
 
     <div class="block-header">

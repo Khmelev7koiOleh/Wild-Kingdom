@@ -196,7 +196,7 @@
 
   &__list {
     display: flex;
-    transition: all 3.3s ease 0s;
+    transition: all 1.3s ease 0s;
     flex-wrap: wrap;
     row-gap: toRem(3);
     column-gap: clamp(toRem(2), 5vw, toRem(42));
