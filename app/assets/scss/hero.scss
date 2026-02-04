@@ -6,24 +6,29 @@
   align-items: center;
 
   &__container {
+    max-width: $containerWidth;
     padding-top: toRem(150);
     padding-bottom: toRem(50);
-
+    position: relative;
     z-index: 2;
+    display: flex;
+    justify-content: end;
+    align-items: center;
     flex-grow: 1;
   }
+
   &__content {
     max-width: 650px;
     position: absolute;
     z-index: 2;
     top: 50%;
-
     left: 5%;
     transform: translate(-5%, -50%);
   }
   &__title {
     font-size: clamp(42px, 8vw, 85px);
     font-family: "Italiana";
+    font-weight: 300;
     color: $bgGold;
     text-transform: capitalize;
     &::not(:last-child) {
@@ -76,10 +81,11 @@
     justify-content: center;
     border: $bgGold 1px solid;
     padding: 10px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+
+    // position: absolute;
+    // top: 50%;
+    // left: 50%;
+    // transform: translate(-50%, -50%);
   }
   &__swiper-wrapper {
     // width: 600px;
@@ -94,12 +100,15 @@
     align-items: center;
     justify-content: center;
 
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    // position: absolute;
+    // top: 50%;
+    // left: 50%;
+    // transform: translate(-50%, -50%);
 
     overflow: hidden; // 🔴 CRITICAL
+  }
+  &__swiper-slide {
+    cursor: pointer;
   }
   &__swiper {
     width: 100%;
@@ -107,39 +116,48 @@
   }
 
   &__swiper-image {
-    width: 300px;
+    width: 600px;
     height: auto;
   }
 
   &__miniswiper-wrapper {
-    // width: 600px;
-    // height: 600px;
-    width: 123px;
-    height: 123px;
-    border-radius: 50%;
-
-    background: #000000;
+    width: 450px;
+    // height: auto;
 
     display: flex;
     align-items: center;
     justify-content: center;
-
-    // position: absolute;
-    // top: 50%;
-    // left: 75%;
-    // transform: translate(-50%, -50%);
+    background: transparent;
+    margin: 1vw;
+    overflow: hidden;
   }
+
   &__miniswiper {
     width: 100%;
-    height: 100%;
+    height: auto;
+  }
+  &__miniswiper-slide {
     display: flex;
-    align-items: center;
     justify-content: center;
-    gap: 10px;
+    align-items: center;
+    overflow: hidden;
+    cursor: pointer;
+
+    transform: translate(-100%);
+    // &--hidden {
+    //   opacity: 0; /* hide it visually */
+    //   pointer-events: none; /* prevent clicking */
+    //   width: 0; /* optional, collapse it */
+    //   margin: 0; /* optional, remove spacing */
+    // }
   }
 
   &__miniswiper-image {
-    width: 100px;
-    height: auto;
+    width: 123px;
+    height: 123px;
+    display: flex;
+    justify-self: center;
+    background: #000000;
+    border-radius: 50%;
   }
 }

@@ -1,39 +1,100 @@
 <script setup>
-import dog from "../img/hero/dog.svg";
+import dog from "../img/hero/dog3.svg";
+import dog2 from "../img/hero/dog2.svg";
+import cat from "../img/hero/cat.svg";
+import cat2 from "../img/hero/cat2-full.svg";
+import { ref, watch } from "vue";
 // import bg from "../img/hero/bg.jpg";
 import bones from "../img/hero/bones.png";
 import arrow from "../img/hero/arrow.png";
 import { Swiper, SwiperSlide } from "swiper/vue";
-import { Navigation, Pagination, Autoplay, Scrollbar } from "swiper/modules";
+import {
+  Navigation,
+  Pagination,
+  Autoplay,
+  Scrollbar,
+  Controller,
+  Thumbs,
+} from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 
-const modules = [Navigation, Pagination, Autoplay, Scrollbar];
+const modules = [
+  Navigation,
+  Pagination,
+  Autoplay,
+  Scrollbar,
+  Controller,
+  Thumbs,
+];
 const slides = [
   { image: dog, title: "Dog" },
+  { image: dog2, title: "Dog2" },
+  { image: cat, title: "cat" },
+  { image: cat2, title: "cat2" },
 
-  { image: bones, title: "bones" },
-  // { image: bg, title: "BG" },
-  { image: arrow, title: "arrow" },
-  { image: bones, title: "bones" },
-  { image: dog, title: "Dog" },
-
-  // { image: bg, title: "BG" },
-  { image: arrow, title: "arrow" },
+  // { image: dog, title: "Dog" },
+  // { image: bones, title: "bones" },
+  // // { image: bg, title: "BG" },
+  // { image: arrow, title: "arrow" },
 ];
-const swiperRef = ref(null);
 
-const onSwiper = (swiper) => {
-  swiperRef.value = swiper;
+const activeIndex = ref(0);
+const thumbsSwiper = ref(null);
+const mainSwiper = ref(null);
+const miniSwiper = ref(null);
+// const miniSwiper2 = ref(null);
+// const miniSwiper3 = ref(null);
+
+// const onSwiper = (swiper) => {
+//   mainSwiper.value = swiper;
+// };
+const bindSwipers = () => {
+  if (mainSwiper.value && miniSwiper.value) {
+    mainSwiper.value.controller.control = [miniSwiper.value];
+
+    miniSwiper.value.controller.control = mainSwiper.value;
+  }
 };
+const onMiniClick = (swiper) => {
+  const index = swiper.clickedIndex;
+  if (index != null) {
+    mainSwiper.value.slideToLoop(index);
+  }
+};
+const onMainSwiper = (swiper) => {
+  mainSwiper.value = swiper;
+  bindSwipers();
+};
+
+const onMiniSwiper = (swiper) => {
+  miniSwiper.value = swiper;
+  bindSwipers();
+  swiper.on("slideChange", () => {
+    activeIndex.value = swiper.activeIndex;
+    console.log(activeIndex.value);
+    console.log(swiper);
+  });
+};
+
+// const onMiniSwiper2 = (swiper) => {
+//   miniSwiper2.value = swiper;
+//   bindSwipers();
+// };
+
+// const onMiniSwiper3 = (swiper) => {
+//   miniSwiper3.value = swiper;
+//   bindSwipers();
+// };
+
 const slidePrev = () => {
-  swiperRef.value?.slidePrev();
+  mainSwiper.value?.slidePrev();
 };
 
 const slideNext = () => {
-  swiperRef.value?.slideNext();
+  mainSwiper.value?.slideNext();
 };
 </script>
 <template>
@@ -62,18 +123,19 @@ const slideNext = () => {
           </div> -->
             <!-- navigation
               :pagination="{ clickable: true }" -->
+
+            <!-- :autoplay="{ delay: 3000, disableOnInteraction: false }" -->
             <client-only>
               <swiper
                 class="hero__swiper swiper"
                 :modules="modules"
                 :slides-per-view="1"
-                :space-between="50"
-                :autoplay="{ delay: 2000, disableOnInteraction: false }"
-                :centered-slides="true"
-                :scrollbar="{ draggable: true }"
+                :space-between="0"
                 :loop="true"
-                @swiper="onSwiper"
-                @slideChange="onSlideChange"
+                :centered-slides="false"
+                :slide-to-clicked-slide="true"
+                @swiper="onMainSwiper"
+                @slideChange="onMainSwiper"
               >
                 <swiper-slide
                   class="hero__swiper-slide"
@@ -112,30 +174,23 @@ const slideNext = () => {
             <swiper
               class="hero__miniswiper swiper"
               :modules="modules"
-              :slides-per-view="1"
-              :space-between="50"
-              :autoplay="{ delay: 2000, disableOnInteraction: false }"
-              :centered-slides="true"
-              :scrollbar="{ draggable: true }"
+              :slides-per-view="3"
+              :free-mode="true"
+              :watch-slides-progress="true"
               :loop="true"
-              @swiper="onSwiper"
-              @slideChange="onSlideChange"
+              :space-between="0"
+              :centered-slides="false"
+              :slide-to-clicked-slide="true"
+              :resistance="false"
+              :resistance-ratio="0"
+              :touch-release-on-edges="true"
+              @swiper="onMiniSwiper"
+              @click="onMiniClick"
             >
               <swiper-slide
-                class="hero__miniswiper-slide"
                 v-for="(slide, i) in slides"
                 :key="i"
-              >
-                <img
-                  class="hero__miniswiper-image"
-                  :src="slide.image"
-                  :alt="slide.title"
-                />
-              </swiper-slide>
-              <swiper-slide
                 class="hero__miniswiper-slide"
-                v-for="(slide, i) in slides"
-                :key="i"
               >
                 <img
                   class="hero__miniswiper-image"
@@ -153,30 +208,4 @@ const slideNext = () => {
   </div>
 </template>
 
-<style lang="scss" scoped>
-:deep(.hero__swiper) {
-  width: 100%;
-  height: 100%;
-}
-
-:deep(.hero__swiper-slide) {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  // background: #1aab56;
-}
-:deep(.hero__swiper-image) {
-  // background: #1aab56;
-}
-
-// .swiper {
-//   display: flex;
-
-//   width: 100%;
-//   height: 100%;
-//   background: #901616;
-//   border-radius: 100%;
-// }
-</style>
+<style lang="scss" scoped></style>
