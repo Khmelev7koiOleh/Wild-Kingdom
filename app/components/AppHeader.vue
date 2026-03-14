@@ -2,7 +2,8 @@
 import { onMounted } from "vue";
 import { Icon } from "@iconify/vue";
 // optional script
-
+import { useScrollStore } from "../stores/scroll-store";
+const scrollStore = useScrollStore();
 onMounted(() => {
   const burger = document.getElementById("burgerBtn");
   const menu = document.getElementById("mobileMenu");
@@ -21,10 +22,23 @@ onMounted(() => {
   });
 });
 const isOpen = ref(false);
+
+// const headerBgChange = computed(() => {
+//   return scrollStore.someState
+//     ? "background-color: #000; opacity: 0.8; max-height: 100px; transition: 0.8s; "
+//     : " max-height: 100%; transition: 0.8s;";
+// });
+const headerClass = computed(() => ({
+  "header--active": scrollStore.someState,
+}));
+
+const logoClass = computed(() => ({
+  "header__logo--active": scrollStore.someState,
+}));
 </script>
 
 <template>
-  <header class="header">
+  <header class="header" :class="headerClass">
     <div class="header__container">
       <div id="mobileMenu" class="header__menu menu">
         <!-- <button class="button"></button> -->
@@ -54,7 +68,7 @@ const isOpen = ref(false);
           </div>
         </nav>
       </div>
-      <div class="header__logo">
+      <div :class="logoClass" class="header__logo">
         <img
           v-if="!isOpen"
           id="logo"

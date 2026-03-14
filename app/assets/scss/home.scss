@@ -1,0 +1,157 @@
+// head part of the block
+@use "sass:math";
+@use "@/assets/scss/functions" as *;
+@use "@/assets/scss/style" as *;
+.block-header {
+  display: grid;
+  gap: toRem(20);
+  justify-items: start;
+  &__label {
+    color: #222220;
+    font-size: 16px;
+    // color: $goldColor;
+    font-family: "Montserrat";
+    line-height: 26.25%;
+    // text-transform: capitalize;
+  }
+
+  &__title {
+    color: #9d875c;
+    text-transform: capitalize;
+    font-family: "Italiana";
+    font-size: toRem(48);
+  }
+
+  &__text {
+    display: grid;
+    gap: toRem(20);
+    line-height: 156.25%;
+    blockquote {
+      font-style: italic;
+      margin: 0;
+    }
+  }
+
+  &__button {
+    padding: toRem(10) toRem(40);
+    border-radius: toRem(50);
+
+    position: relative;
+
+    &::before {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      border-radius: inherit;
+      overflow: hidden;
+      transition: opacity 0.3s;
+      opacity: 0.5;
+      background: url("@/img/button.png") center / cover no-repeat;
+      inset: 0;
+    }
+    img {
+      position: relative;
+      z-index: 2;
+    }
+  }
+}
+.about-us {
+  padding-top: clamp(30px, 8vw, 190px);
+  padding-bottom: clamp(30px, 5vw, 90px);
+  position: relative;
+  &::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0.1;
+    background: url("@/img/tplr/bg.png") 0 0 no-repeat;
+  }
+  &__container {
+    position: relative;
+  }
+  &__body {
+    display: flex;
+    grid-template-columns: 51.25% 1fr;
+    align-items: center;
+    &:not(:last-child) {
+      margin-bottom: clamp(20px, 5vw, 98px);
+    }
+
+    gap: toRem(40);
+    @media (max-width: 767.98px) {
+      display: flex;
+      flex-direction: column-reverse;
+      gap: toRem(20);
+    }
+  }
+  &__image {
+    flex: 0 0 51.25%;
+    border: 1px solid $bgGold;
+    padding: 15px;
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+}
+.services-about-us {
+  display: flex;
+  grid-template-columns: repeat(3, auto);
+  gap: toRem(15);
+  justify-content: space-between;
+  max-width: toRem(1024);
+  margin: 0 auto;
+  flex-wrap: wrap;
+  text-align: center;
+
+  @media (max-width: 767.98px) {
+    justify-content: center;
+    gap: toRem(30);
+  }
+
+  &__item {
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    gap: toRem(29);
+  }
+  &__icon {
+    border-radius: 50%;
+    overflow: hidden;
+    width: clamp(toRem(80), 5vw, toRem(140));
+    height: clamp(toRem(80), 5vw, toRem(140));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: toRem(20);
+    position: relative;
+    &::before {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      transition: opacity 0.3s;
+      opacity: 0.5;
+      background: url("@/img/button.png") center / cover no-repeat;
+      inset: 0;
+    }
+    img {
+      position: relative;
+      z-index: 1;
+      max-width: 100%;
+    }
+  }
+  &__label {
+    font-family: "Italiana";
+    font-size: toRem(24);
+    text-transform: capitalize;
+  }
+}
