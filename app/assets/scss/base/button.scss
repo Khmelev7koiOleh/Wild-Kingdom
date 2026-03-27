@@ -2,11 +2,11 @@
 @use "@/assets/scss/functions" as *;
 @use "@/assets/scss/style" as *;
 .button {
-  //   background: url("/img/button.png") center no-repeat;
+  // background: url("/img/button.png") center no-repeat;
   display: inline-flex;
   //   text-white
-  // color: $mainColor;
-  padding: toRem(10) toRem(40);
+
+  padding: toRem(10) toRem(42);
   border-radius: toRem(50);
   font-weight: 300;
   font-size: $fontSize;
@@ -15,6 +15,7 @@
   overflow: hidden;
   transition: opacity 0.3s ease;
   position: relative;
+
   @media (any-hover: hover) {
     &:hover {
       cursor: pointer;
@@ -31,7 +32,7 @@
         opacity: 0.8;
         background: url("@/img/button.png") center / cover no-repeat;
         inset: 0;
-        z-index: -2;
+        z-index: -1;
       }
     }
   }
