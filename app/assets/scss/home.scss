@@ -6,12 +6,17 @@
   display: grid;
   gap: toRem(20);
   justify-items: start;
+  &--center {
+    justify-items: center;
+    width: clamp(toRem(320), 100%, toRem(460));
+    margin-bottom: clamp(20px, 3vw, 48px);
+  }
   &__label {
     color: #222220;
-    font-size: 16px;
+    font-size: toRem(16);
     // color: $goldColor;
     font-family: "Montserrat";
-    line-height: 26.25%;
+    line-height: 156.25%;
     // text-transform: capitalize;
   }
 
@@ -20,12 +25,14 @@
     text-transform: capitalize;
     font-family: "Italiana";
     font-size: toRem(48);
+    line-height: 120%;
   }
 
   &__text {
     display: grid;
     gap: toRem(20);
     line-height: 156.25%;
+    color: #222220;
     blockquote {
       font-style: italic;
       margin: 0;
@@ -35,6 +42,10 @@
   &__button {
     padding: toRem(10) toRem(40);
     border-radius: toRem(50);
+    span {
+      color: #222220;
+      z-index: 2;
+    }
 
     position: relative;
 
@@ -153,5 +164,46 @@
     font-family: "Italiana";
     font-size: toRem(24);
     text-transform: capitalize;
+  }
+}
+.products {
+  padding-top: clamp(30px, 8vw, 90px);
+  padding-bottom: clamp(30px, 10vw, 170px);
+  position: relative;
+  &__container {
+    position: relative;
+    display: grid;
+    justify-items: center;
+  }
+  &__items {
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(278px, 1fr));
+    row-gap: toRem(50); // Adds space ONLY between rows (top and bottom)
+    column-gap: toRem(40);
+
+    justify-items: center;
+    align-items: center;
+  }
+  &__button {
+    margin-top: toRem(50);
+    span {
+      color: #222220;
+      z-index: 2;
+    }
+    &::before {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      transition: opacity 0.3s;
+      opacity: 0.5;
+      background: url("@/img/button.png") center / cover no-repeat;
+      inset: 0;
+    }
   }
 }

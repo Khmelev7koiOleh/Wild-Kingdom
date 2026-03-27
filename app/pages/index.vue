@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { onMounted, onUnmounted, ref } from "vue";
 import HeroSection from "../components/HeroSecition.vue";
+import { cardInfo } from "../components/card/data/info";
 import { useScrollStore } from "../stores/scroll-store";
 const scrollStore = useScrollStore();
 
@@ -63,7 +64,9 @@ onUnmounted(() => {
               placeholder="Your email"
             /> -->
             <!-- <button type="submit" class="button">Subscribe</button> -->
-            <a href="#" class="block-header__button button">Explore</a>
+            <a href="#" class="block-header__button button"
+              ><span>Explore</span></a
+            >
           </div>
         </div>
         <div class="about-us__services services-about-us">
@@ -86,6 +89,25 @@ onUnmounted(() => {
             <div class="services-about-us__label">Pet accessories</div>
           </div>
         </div>
+      </div>
+    </section>
+    <section class="products">
+      <div class="products__container">
+        <div class="products-block-header block-header block-header--center">
+          <h2 class="block-header__label">Our Products</h2>
+          <div class="block-header__title">For all your pet needs</div>
+          <div class="block-header__text">
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras
+              aliquam mi id augue ultrices, in tempus elit.
+            </p>
+          </div>
+        </div>
+        <div class="products__items">
+          <CardAppCard :data="cardInfo" class="products__item" />
+        </div>
+
+        <a href="#" class="products__button button"><span>Explore</span></a>
       </div>
     </section>
   </div>

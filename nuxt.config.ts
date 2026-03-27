@@ -24,4 +24,5 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: ["@nuxt/eslint", "@nuxt/fonts", "@pinia/nuxt"],
   css: ["~/assets/scss/main.scss"],
+  components: true,
 });
