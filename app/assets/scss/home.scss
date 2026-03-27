@@ -8,8 +8,11 @@
   justify-items: start;
   &--center {
     justify-items: center;
-    width: clamp(toRem(320), 100%, toRem(460));
+    max-width: clamp(toRem(320), 100%, toRem(460));
     margin-bottom: clamp(20px, 3vw, 48px);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
   }
   &__label {
     color: #222220;
@@ -26,6 +29,7 @@
     font-family: "Italiana";
     font-size: toRem(48);
     line-height: 120%;
+    word-break: break-word;
   }
 
   &__text {
@@ -33,6 +37,7 @@
     gap: toRem(20);
     line-height: 156.25%;
     color: #222220;
+    word-break: break-word;
     blockquote {
       font-style: italic;
       margin: 0;

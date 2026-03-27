@@ -55,9 +55,7 @@
       scale: 0.8;
     }
     img {
-      fill: #2dcb3f !important;
       width: clamp(toRem(130), 15vw, toRem(216.58));
-      color: #cd481bff;
     }
     position: relative;
     z-index: 5;
@@ -73,7 +71,7 @@
     @media (max-width: 767.98px) {
       position: fixed;
       color: #fff;
-      top: toRem(40);
+      top: toRem(25);
       left: toRem(20);
       img {
         fill: #2dcb3f !important;

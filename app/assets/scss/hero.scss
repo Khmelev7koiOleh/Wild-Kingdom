@@ -35,6 +35,11 @@
       margin: clamp(15px, 2vw, 35px);
     }
   }
+  &__button {
+    &:hover {
+      background: transparent;
+    }
+  }
   &__bg {
     position: absolute;
     width: 100%;
