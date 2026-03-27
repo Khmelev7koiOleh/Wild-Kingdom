@@ -21,6 +21,7 @@
     text-transform: capitalize;
     font-size: toRem(16);
     // color: $goldColor;
+    // font-weight: 100;
     font-family: "Montserrat";
 
     // text-transform: capitalize;
@@ -301,7 +302,10 @@
 
     // max-width: clamp(toRem(320), 100%, toRem(460));
     // margin-bottom: clamp(20px, 3vw, 48px);
-    margin-left: clamp(toRem(30), 5vw, toRem(168));
+    @media (min-width: 991.98px) {
+      margin-left: clamp(toRem(30), 5vw, toRem(168));
+    }
+
     @media (max-width: 767.98px) {
       justify-items: center;
       text-align: center;
