@@ -54,16 +54,7 @@ onUnmounted(() => {
                 ultrices sem non.
               </p>
             </div>
-            <!-- <input
-              data-required="email"
-              autocomplete="off"
-              name="form[]"
-              type="text"
-              data-error="Error"
-              class="subscribe__input"
-              placeholder="Your email"
-            /> -->
-            <!-- <button type="submit" class="button">Subscribe</button> -->
+
             <a href="#" class="block-header__button button"
               ><span>Explore</span></a
             >
@@ -108,6 +99,45 @@ onUnmounted(() => {
         </div>
 
         <a href="#" class="products__button button"><span>Explore</span></a>
+      </div>
+    </section>
+
+    <section class="services">
+      <!-- <img
+        src="../img/services/decor.svg"
+        alt=""
+        class="services__decor--right"
+      /> -->
+      <img
+        src="/img/services/decor.svg"
+        alt=""
+        class="services__decor--right"
+      />
+      <div class="services__container">
+        <div class="services__body">
+          <div class="services__image">
+            <img src="/img/services/cat.jpg" alt="Image" class="" />
+          </div>
+
+          <div class="services__block-header block-header block-header--white">
+            <h2 class="block-header__label">our services</h2>
+            <div class="block-header__title">
+              Quality Things for Loving Pets
+            </div>
+            <div class="block-header__text">
+              <blockquote>“More than a Pet Store…”</blockquote>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras
+                aliquam mi id augue ultrices, in tempus elit tristique. Aliquam
+                ultrices sem non.
+              </p>
+            </div>
+
+            <a href="#" class="services__button button button--border"
+              ><span>Explore </span></a
+            >
+          </div>
+        </div>
       </div>
     </section>
   </div>
