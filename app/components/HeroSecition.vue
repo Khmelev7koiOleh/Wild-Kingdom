@@ -34,6 +34,10 @@ const slides = [
   { image: dog2, title: "Dog2" },
   { image: cat, title: "cat" },
   { image: cat2, title: "cat2" },
+  // { image: dog, title: "Dog" },
+  // { image: dog2, title: "Dog2" },
+  // { image: cat, title: "cat" },
+  // { image: cat2, title: "cat2" },
 
   // { image: dog, title: "Dog" },
   // { image: bones, title: "bones" },
@@ -90,12 +94,72 @@ const onMiniSwiper = (swiper) => {
 // };
 
 const slidePrev = () => {
-  mainSwiper.value?.slidePrev();
+  miniSwiper.value?.slidePrev();
+  console.log("prev");
 };
 
 const slideNext = () => {
-  mainSwiper.value?.slideNext();
+  miniSwiper.value?.slideNext();
+  console.log("next");
 };
+
+const computedIsActive = computed(() => isActive);
+const activeSlide = ref(null);
+
+const onSlideChange = (swiper) => {
+  console.log("Активний індекс:", swiper.activeIndex);
+  activeSlide.value = swiper.realIndex;
+  // Якщо використовуєте loop: true, краще брати swiper.realIndex
+};
+
+// const activeIndex = ref(0)
+const getStyle = (i) => {
+  const position = (i - activeIndex.value + slides.length) % slides.length;
+
+  if (position === 0) {
+    return { transform: "translateX(0) scale(1)", zIndex: 3 };
+  }
+  if (position === 1) {
+    return { transform: "translateX(200px) scale(0.6)", zIndex: 2 };
+  }
+  if (position === 2) {
+    return { transform: "translateX(350px) scale(0.5)", zIndex: 1 };
+  }
+  if (position === 3) {
+    return { transform: "translateX(500px) scale(0.4)", zIndex: 0 };
+  }
+
+  return { opacity: 0 };
+};
+const active = ref(0);
+const getPosition = (index) => {
+  const total = slides.length; // 4
+  let diff = index - active.value;
+
+  // Loop-Korrektur (Kürzester Weg im Kreis)
+  if (diff < -total / 2) diff += total;
+  if (diff > total / 2) diff -= total;
+
+  if (diff === 0) return "active"; // Slide 1 (550px)
+  if (diff === 1) return "next1"; // Slide 2 (123px)
+  if (diff === 2) return "next2"; // Slide 3 (123px)
+
+  // 🔴 Der "verlorene" 4. Slide:
+  if (diff === 3 || diff === -1) return "next3";
+
+  return "next3"; // Fallback, damit er nie ganz verschwindet
+};
+const next = () => {
+  active.value = (active.value + 1) % slides.length;
+};
+
+const prev = () => {
+  active.value = (active.value - 1 + slides.length) % slides.length;
+};
+
+const translateX = computed(() => {
+  return `translateX(-${active.value * 150}px)`;
+});
 </script>
 <template>
   <div class="wrapper">
@@ -108,23 +172,8 @@ const slideNext = () => {
           >
         </div>
 
-        <div class="hero__swiper-circle">
+        <!-- <div class="hero__swiper-circle">
           <div class="hero__swiper-wrapper">
-            <!-- <div class="hero__wrapper swiper-wrapper">
-            <div class="hero__slide slide-hero swiper-slide">
-              <div class="slide-hero__body">
-                <img
-                  class="slide-hero__image"
-                  src="/img/hero/dog.svg"
-                  alt="hero-image"
-                />
-              </div>
-            </div>
-          </div> -->
-            <!-- navigation
-              :pagination="{ clickable: true }" -->
-
-            <!-- :autoplay="{ delay: 3000, disableOnInteraction: false }" -->
             <client-only>
               <swiper
                 class="hero__swiper swiper"
@@ -151,8 +200,8 @@ const slideNext = () => {
               </swiper>
             </client-only>
           </div>
-        </div>
-        <div class="hero__controll">
+        </div> -->
+        <!-- <div class="hero__controll">
           <button
             @click="slidePrev()"
             type="button"
@@ -168,13 +217,34 @@ const slideNext = () => {
           >
             <img src="../img/hero/arrow-6.png" alt="" />
           </button>
+        </div> -->
+
+        <!-- ////////// -->
+        <div class="carousel">
+          <div class="carousel__track" :style="{ transform: translateX }">
+            <div
+              v-for="(slide, i) in slides"
+              :key="i"
+              class="carousel__item"
+              :class="getPosition(i)"
+            >
+              <img :src="slide.image" />
+            </div>
+          </div>
+          <!-- <div class="controls">
+            <button @click="prev">Prev</button>
+            <button @click="next">Next</button>
+          </div>
+        </div> -->
         </div>
-        <div class="hero__miniswiper-wrapper">
+
+        <!-- <div>{{ activeSlide }}</div> -->
+        <!-- <div class="hero__miniswiper-wrapper">
           <client-only>
             <swiper
               class="hero__miniswiper swiper"
               :modules="modules"
-              :slides-per-view="3"
+              :slides-per-view="'4'"
               :free-mode="true"
               :watch-slides-progress="true"
               :loop="true"
@@ -186,11 +256,13 @@ const slideNext = () => {
               :touch-release-on-edges="true"
               @swiper="onMiniSwiper"
               @click="onMiniClick"
+              @slideChange="onSlideChange"
             >
               <swiper-slide
                 v-for="(slide, i) in slides"
                 :key="i"
                 class="hero__miniswiper-slide"
+                :class="activeSlide === i ? 'active' : ''"
               >
                 <img
                   class="hero__miniswiper-image"
@@ -200,7 +272,24 @@ const slideNext = () => {
               </swiper-slide>
             </swiper>
           </client-only>
-        </div>
+        </div> -->
+      </div>
+      <div class="carousel__controll">
+        <button
+          @click="prev()"
+          type="button"
+          class="carousel__arrow carousel__arrow--left _icon-slider-arrow"
+        >
+          <img src="../img/hero/arrow-7.png" alt="" />
+        </button>
+
+        <button
+          @click="next()"
+          type="button"
+          class="carousel__arrow carousel__arrow--right _icon-slider-arrow"
+        >
+          <img src="../img/hero/arrow-6.png" alt="" />
+        </button>
       </div>
     </section>
 

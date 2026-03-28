@@ -7,8 +7,8 @@
 
   &__container {
     max-width: $containerWidth;
-    padding-top: toRem(150);
-    padding-bottom: toRem(50);
+    padding-top: 100px;
+    padding-bottom: 50px;
     position: relative;
     z-index: 2;
     display: flex;
@@ -109,8 +109,6 @@
     // top: 50%;
     // left: 50%;
     // transform: translate(-50%, -50%);
-
-    overflow: hidden; // 🔴 CRITICAL
   }
   &__swiper-slide {
     cursor: pointer;
@@ -126,29 +124,30 @@
   }
 
   &__miniswiper-wrapper {
-    width: 450px;
-    // height: auto;
-
+    width: 1023px;
+    height: auto;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    background: transparent;
-    margin: 1vw;
-    overflow: hidden;
   }
 
   &__miniswiper {
     width: 100%;
-    height: auto;
+    height: 100%;
+    display: flex;
+
+    justify-items: center;
+
+    align-self: center;
   }
   &__miniswiper-slide {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
+    justify-self: end;
+    align-self: center;
+    background: transparent;
     cursor: pointer;
 
-    transform: translate(-100%);
+    // max-width: 123px;
+    max-width: 25%;
+    // transform: translate(-120%);
     // &--hidden {
     //   opacity: 0; /* hide it visually */
     //   pointer-events: none; /* prevent clicking */
@@ -161,8 +160,140 @@
     width: 123px;
     height: 123px;
     display: flex;
-    justify-self: center;
+    justify-items: center;
+    align-self: center;
     background: #000000;
     border-radius: 50%;
   }
+}
+.active {
+  flex: 0 0 550px;
+
+  img {
+    max-width: 550px;
+    max-height: 550px;
+    height: auto;
+  }
+}
+.carousel {
+  width: 1032px;
+  display: flex;
+  justify-self: start;
+  align-items: center;
+
+  position: relative;
+  overflow: hidden; /* 👈 Verhindert, dass Slides außerhalb der 1023px sichtbar sind */
+
+  // background: #000;
+
+  &__controll {
+    position: absolute;
+    bottom: 5%;
+    right: 10%;
+    transform: translate(-10%, -5%);
+    z-index: 2;
+    display: flex;
+    gap: 4px;
+  }
+  &__arrow {
+    background: transparent;
+    border: none;
+
+    :hover {
+      cursor: pointer;
+      scale: 1.3;
+
+      transition: all 0.3s ease 0s;
+    }
+
+    &--left {
+    }
+    &--right {
+    }
+  }
+}
+
+.carousel__track {
+  // width: 100%;
+  display: flex;
+  align-items: center;
+  justify-self: end;
+  transition: transform 0.5s ease;
+  gap: clamp(10px, 2.5vw, 40px);
+  padding-left: 10px;
+  margin: 0 auto;
+}
+
+/* 🔴 each slide */
+.carousel__item {
+  flex: 0 0 103px; // 🔴 fixed base size
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  transition: all 0.4s ease;
+  border-radius: 50%;
+  padding: 2px;
+  border: $bgGold 1px solid;
+}
+
+/* image */
+.carousel__item img {
+  width: 103px;
+  height: 103px;
+  border-radius: 50%;
+  transition: all 0.4s ease;
+  background: #000000;
+}
+
+/* 🔴 ACTIVE */
+.carousel__item.active {
+  flex: 0 0 clamp(550px, 24vw, 850px);
+  border-radius: 50%;
+  padding: 15px;
+  border: $bgGold 1px solid;
+}
+
+.carousel__item.active img {
+  width: clamp(550px, 24vw, 850px);
+  height: clamp(550px, 24vw, 850px);
+
+  // padding: 100px;
+}
+
+.controls {
+  position: fixed;
+  display: flex;
+  gap: 20px;
+  position: absolute;
+  top: 20%;
+  left: 10%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  cursor: pointer;
+}
+// .hero__controll {
+//   position: fixed;
+//   display: flex;
+//   gap: 20px;
+//   position: absolute;
+//   top: 20%;
+//   left: 10%;
+//   transform: translate(-50%, -50%);
+//   z-index: 50;
+//   cursor: pointer;
+// }
+
+// Alles andere, was noch weit weg ist
+.hidden {
+  opacity: 0;
+  transform: translateX(100px);
+}
+
+.scrolled-past {
+  opacity: 1;
+  pointer-events: none;
+  /* Schiebe sie nach links aus dem Container (-550px wegen der Größe) */
+  transform: translateX(-100px) scale(0.8);
+  z-index: 0;
 }
