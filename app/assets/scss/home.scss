@@ -312,3 +312,45 @@
     }
   }
 }
+
+.gallery {
+  width: 100%;
+  padding-top: clamp(30px, 8vw, 175px);
+  padding-bottom: clamp(30px, 5vw, 175px);
+
+  &__container {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    justify-content: space-between;
+    row-gap: clamp(toRem(20), 5vw, toRem(100));
+
+    @media (max-width: 767.98px) {
+      grid-template-columns: repeat(1, auto);
+      justify-content: center;
+    }
+    > .gallery-card {
+      &:nth-child(4n + 1),
+      &:nth-child(4n) {
+        @media (min-width: 767.98) {
+          width: clamp(toRem(320), 100%, toRem(592));
+        }
+
+        // padding: toRem(0), toRem(20), toRem(0), toRem(0);
+      }
+    }
+    > .gallery-card {
+      &:nth-child(4n) {
+        @media (min-width: 767.98) {
+          // width: 77.86%;
+          justify-self: end;
+
+          background: #3ab4c2;
+        }
+        //   padding: toRem(0), toRem(0), toRem(0), toRem(20);
+      }
+    }
+  }
+}
+// .gallery__container > .gallery-card:nth-child(4n + 1) {
+//   background: #000;
+// }

@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { onMounted, onUnmounted, ref } from "vue";
 import HeroSection from "../components/HeroSecition.vue";
-import { cardInfo } from "../components/card/data/info";
+import { cardInfo } from "../components/card/data/products-info";
+import { galleryInfo } from "../components/card/data/gallery-info";
 import { useScrollStore } from "../stores/scroll-store";
 const scrollStore = useScrollStore();
 
@@ -95,7 +96,7 @@ onUnmounted(() => {
           </div>
         </div>
         <div class="products__items">
-          <CardAppCard :data="cardInfo" class="products__item" />
+          <CardAppProductsCard :data="cardInfo" class="products__item" />
         </div>
 
         <a href="#" class="products__button button"><span>Explore</span></a>
@@ -138,6 +139,15 @@ onUnmounted(() => {
             >
           </div>
         </div>
+      </div>
+    </section>
+    <section class="gallery">
+      <div class="gallery__container">
+        <CardAppGalleryCard
+          v-for="(item, i) in galleryInfo"
+          :key="i"
+          :data="item"
+        />
       </div>
     </section>
   </div>
