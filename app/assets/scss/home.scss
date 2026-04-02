@@ -629,12 +629,12 @@
   }
 
   &__controll {
-    @media (max-width: 776px) {
+    @media (max-width: 767.98px) {
       position: absolute;
-      top: -5%;
+      top: -10%;
       right: 0;
 
-      transform: translateX(-10%);
+      transform: translateX(-5%);
       z-index: 2;
       display: flex;
       gap: 4px;
@@ -644,7 +644,7 @@
     background: transparent;
     border: none;
     z-index: 4;
-    @media (min-width: 776px) {
+    @media (min-width: 767.98px) {
       &:first-child {
         position: absolute;
         top: 50%;
