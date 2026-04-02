@@ -331,7 +331,7 @@ onUnmounted(() => {
               </div>
 
               <blockquote class="reviews__item">
-                <div class="text">
+                <div class="reviews__text">
                   <p>{{ slide.text }}</p>
                 </div>
 

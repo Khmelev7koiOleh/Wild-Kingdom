@@ -586,6 +586,7 @@
     height: clamp(toRem(120), 9vw, toRem(170));
     overflow: hidden;
     border-radius: 50%;
+    margin-bottom: clamp(20px, 2vw, 40px);
     &::before {
       content: "";
       position: absolute;
@@ -607,12 +608,14 @@
     }
   }
   &__text {
-    font-size: clamp(18px, 2vw, 30px);
+    font-size: clamp(16px, 2vw, 28px);
     line-height: 166.666667%;
+
     &:not(:last-child) {
-      margin-bottom: toRem(50);
+      margin-bottom: clamp(20px, 2vw, 40px);
     }
     p {
+      font-family: "Italiana";
       &:not(:last-child) {
         margin-bottom: toRem(15);
       }
@@ -645,13 +648,13 @@
       &:first-child {
         position: absolute;
         top: 50%;
-        left: 5%;
+        left: 3%;
         transform: translateY(-50%);
       }
       &:last-child {
         position: absolute;
         top: 50%;
-        right: 5%;
+        right: 3%;
         transform: translateY(-50%);
       }
     }
