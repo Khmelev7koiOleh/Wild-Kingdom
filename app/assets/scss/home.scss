@@ -559,3 +559,107 @@
     }
   }
 }
+
+.reviews {
+  padding-top: clamp(30px, 5vw, 100px);
+  padding-bottom: clamp(30px, 5vw, 160px);
+
+  &__container {
+    position: relative;
+    padding-left: clamp(10px, 5vw, 150px);
+    padding-right: clamp(10px, 5vw, 150px);
+    display: flex;
+  }
+
+  &__swiper-slide {
+    display: grid;
+    justify-items: center;
+    text-align: center;
+  }
+  &__icon {
+    position: relative;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: clamp(toRem(120), 9vw, toRem(170));
+    height: clamp(toRem(120), 9vw, toRem(170));
+    overflow: hidden;
+    border-radius: 50%;
+    &::before {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      border-radius: 50%;
+      overflow: hidden;
+      transition: opacity 0.3s;
+      opacity: 0.5;
+      background: url("@/img/button.png") center / cover no-repeat;
+      inset: 0;
+    }
+    img {
+      width: toRem(70);
+      z-index: 2;
+      position: relative;
+    }
+  }
+  &__text {
+    font-size: clamp(18px, 2vw, 30px);
+    line-height: 166.666667%;
+    &:not(:last-child) {
+      margin-bottom: toRem(50);
+    }
+    p {
+      &:not(:last-child) {
+        margin-bottom: toRem(15);
+      }
+    }
+  }
+  &__author {
+    font-family: "Italiala ";
+    font-size: clamp(32px, 3vw, 48px);
+    color: $goldColor;
+    font-style: normal;
+  }
+
+  &__controll {
+    @media (max-width: 776px) {
+      position: absolute;
+      top: -5%;
+      right: 0;
+
+      transform: translateX(-10%);
+      z-index: 2;
+      display: flex;
+      gap: 4px;
+    }
+  }
+  &__arrow {
+    background: transparent;
+    border: none;
+    z-index: 4;
+    @media (min-width: 776px) {
+      &:first-child {
+        position: absolute;
+        top: 50%;
+        left: 5%;
+        transform: translateY(-50%);
+      }
+      &:last-child {
+        position: absolute;
+        top: 50%;
+        right: 5%;
+        transform: translateY(-50%);
+      }
+    }
+    :hover {
+      cursor: pointer;
+      scale: 1.3;
+
+      transition: all 0.3s ease 0s;
+    }
+  }
+}

@@ -4,7 +4,77 @@ import HeroSection from "../components/HeroSecition.vue";
 import { cardInfo } from "../components/card/data/products-info";
 import { galleryInfo } from "../components/card/data/gallery-info";
 import { useScrollStore } from "../stores/scroll-store";
+
+import { Swiper, SwiperSlide } from "swiper/vue";
+import {
+  Navigation,
+  Pagination,
+  Autoplay,
+  Scrollbar,
+  Controller,
+  Thumbs,
+} from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
+
+const modules = [
+  Navigation,
+  Pagination,
+  Autoplay,
+  Scrollbar,
+  Controller,
+  Thumbs,
+];
+const slides = [
+  {
+    img: "../img/icons/paw.svg",
+    text: "lorem ipsumeee lorem  lorem ipsumeee lorem  lorem ipsumeee lorem  lorem ipsumeee lorem lorem ipsumeee lorem  lorem ipsumeee lorem ipsumeee lorem ipsumeee lorem ipsumeeelorem ipsumeee lorem ipsumeee lorem ipsumeee lorem ipsumeee",
+
+    author: "Klein Morreti",
+  },
+  {
+    img: "../img/icons/paw.svg",
+    text: "lorem ipsumeee lorem ipsumeee lorem ipsumeee lorem ipsumeeelorem ipsumeee lorem ipsumeee lorem ipsumeee lorem lorem ipsumeee lorem lorem ipsumeee lorem lorem ipsumeee lorem lorem ipsumeee lorem  lorem ipsumeee lorem ipsumeee",
+
+    author: "Dunn Smith",
+  },
+  {
+    img: "../img/icons/paw.svg",
+    text: "lorem ipsumeee lorem ipsumeee lorem ipsumeee lorem ipsumeeelorem ipsumeee lorem ipsumeee lorem ipsumeee lorem lorem ipsumeee lorem lorem ipsumeee lorem lorem ipsumeee lorem lorem ipsumeee lorem lorem ipsumeee lorem lorem ipsumeee lorem  ipsumeee",
+
+    author: "Daly Simone",
+  },
+  {
+    img: "../img/icons/paw.svg",
+    text: "lorem ipsumeee lorem ipsumeee lorem ipsumeee lorem ipsumeeelorem ipsumeee lorem ipsumeee  lorem ipsumeee lorem ipsumeee",
+
+    author: "Leonard Mitchell",
+  },
+];
 const scrollStore = useScrollStore();
+
+const reviewSwiper = ref();
+
+const onReviewClick = (swiper) => {
+  const index = swiper.clickedIndex;
+  if (index != null) {
+    onReviewSwiper.value.slideToLoop(index);
+  }
+};
+const onReviewSwiper = (swiper) => {
+  reviewSwiper.value = swiper;
+};
+const slidePrev = () => {
+  reviewSwiper.value?.slidePrev();
+  console.log("prev");
+};
+
+const slideNext = () => {
+  reviewSwiper.value?.slideNext();
+  console.log("next");
+};
 
 // let wrapper = ref<HTMLElement | null>(null);
 
@@ -216,6 +286,60 @@ onUnmounted(() => {
             ><span>Explore </span></a
           >
         </div>
+      </div>
+    </section>
+
+    <section class="reviews">
+      <div class="reviews__container">
+        <div class="reviews__controll">
+          <button
+            @click="slidePrev()"
+            type="button"
+            class="reviews__arrow reviews__arrow--left _icon-slider-arrow"
+          >
+            <img src="../img/hero/arrow-7.png" alt="" />
+          </button>
+
+          <button
+            @click="slideNext()"
+            type="button"
+            class="reviews__arrow reviews__arrow--right _icon-slider-arrow"
+          >
+            <img src="../img/hero/arrow-6.png" alt="" />
+          </button>
+        </div>
+
+        <client-only>
+          <swiper
+            class="reviews__swiper swiper"
+            :modules="modules"
+            :slides-per-view="1"
+            :space-between="0"
+            :loop="true"
+            :centered-slides="false"
+            :slide-to-clicked-slide="true"
+            @swiper="onReviewSwiper"
+            @slideChange="onReviewClick"
+          >
+            <swiper-slide
+              class="reviews__swiper-slide"
+              v-for="(slide, i) in slides"
+              :key="i"
+            >
+              <div class="reviews__icon">
+                <img :src="slide.img" alt="icon" />
+              </div>
+
+              <blockquote class="reviews__item">
+                <div class="text">
+                  <p>{{ slide.text }}</p>
+                </div>
+
+                <cite class="reviews__author">{{ slide.author }}</cite>
+              </blockquote>
+            </swiper-slide>
+          </swiper>
+        </client-only>
       </div>
     </section>
   </div>
