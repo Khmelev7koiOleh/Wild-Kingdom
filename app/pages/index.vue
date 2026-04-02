@@ -41,7 +41,7 @@ onUnmounted(() => {
       <div class="about-us__container">
         <div class="about-us__body">
           <div class="about-us__image">
-            <img src="@/img/tplr/image.jpg" alt="Image" class="" />
+            <img src="@/img/tplr/image.jpg" alt="Image" />
           </div>
 
           <div class="block-header">
@@ -148,6 +148,74 @@ onUnmounted(() => {
           :key="i"
           :data="item"
         />
+      </div>
+    </section>
+    <section class="contacts">
+      <div class="contacts__container">
+        <div class="contacts__media media-contacts">
+          <div class="media-contacts__images">
+            <div class="media-contacts__block-image">
+              <img
+                src="../img/contacts/img1.jpg"
+                alt="Image"
+                class="media-contacts__img"
+              />
+            </div>
+            <div class="media-contacts__block-image">
+              <a href="#" class="media-contacts__play">
+                <span>
+                  <img src="../img/contacts/play.svg" alt="play video" />
+                </span>
+              </a>
+              <img
+                src="../img/contacts/img2.jpg"
+                alt="Image"
+                class="media-contacts__img"
+              />
+            </div>
+          </div>
+
+          <!-- <a
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="media-contacts__play _icon-play"
+            >...</a
+          > -->
+        </div>
+
+        <div class="contacts__block-header block-header">
+          <h2 class="block-header__label">Contact us</h2>
+          <div class="block-header__title">
+            Come for the care, leave with a smile
+          </div>
+          <!-- <div class="block-header__text">
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras
+              aliquam mi id augue ultrices, in tempus elit.
+            </p>
+          </div> -->
+
+          <address class="block-header__contacts contacts-items">
+            <ul class="contacts-items__item -icon-clock">
+              <li>Mon - Fri: 9:00 - 23:00</li>
+              <li>Sat - Sun: 9:00 - 21:00</li>
+            </ul>
+
+            <ul class="contacts-items__item -icon-location">
+              <li><a href="tel:+012-345-6789">+012-345-6789</a></li>
+              <li>
+                <a href="mailto:TheWildKingdom@contact.com"
+                  >TheWildKingdom@contact.com</a
+                >
+              </li>
+              <li>9889 Lorem Ipsum street, Pellentesque, CA, USA</li>
+            </ul>
+          </address>
+          <a href="#" class="block-header__button button"
+            ><span>Explore </span></a
+          >
+        </div>
       </div>
     </section>
   </div>

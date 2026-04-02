@@ -4,9 +4,10 @@
 .button {
   // background: url("/img/button.png") center no-repeat;
   display: inline-flex;
-  //   text-white
+  font-family: "Montserrat";
   justify-content: center;
   padding: toRem(10) toRem(42);
+  padding: clamp(toRem(10), 2vw, toRem(10)) clamp(toRem(30), 3vw, toRem(42));
   border-radius: toRem(50);
   font-weight: 300;
   font-size: $fontSize;
@@ -40,6 +41,8 @@
     background: transparent;
     border: 1px solid $bgGold;
     color: $bgGold;
+    font-family: "Montserrat";
+
     @media (max-width: 767.98px) {
       color: #fff;
       background-color: transparent;

@@ -121,7 +121,8 @@
     row-gap: toRem(3);
     align-items: center;
     list-style: none;
-    column-gap: toRem(35);
+    column-gap: clamp(toRem(25), 3vw, toRem(35));
+
     padding: 0;
     margin: 0;
     // @include adaptiveValue("column-gap", 47, 15, 0, $containerWidth, 767.98);
@@ -175,13 +176,12 @@
 .action-header {
   background: transparent;
   display: flex;
-
+  // background: #000;
   flex-wrap: wrap;
-  column-gap: toRem(47);
+  // column-gap: clamp(toRem(25), 3vw, toRem(35));
   row-gap: toRem(3);
   align-items: center;
   color: $bgGold;
-  column-gap: toRem(47);
 
   @media (max-width: 767.98px) {
     z-index: 20;
@@ -218,7 +218,7 @@
   }
   &--desktop {
     display: flex;
-    gap: toRem(35);
+    column-gap: clamp(toRem(25), 3vw, toRem(35));
   }
   @media (max-width: 767.98px) {
     &--desktop {
