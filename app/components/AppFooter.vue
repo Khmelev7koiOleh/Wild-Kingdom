@@ -50,7 +50,7 @@
           </div>
         </div>
 
-        <div class="footer__logo"><img src="/img/logo.svg" alt="Logo" /></div>
+        <div class="footer__logo"><img src="/img/logo2.svg" alt="Logo" /></div>
 
         <div class="footer__subscribe subscribe">
           <h5 class="subscribe__title">
