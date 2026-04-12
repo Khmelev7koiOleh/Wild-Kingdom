@@ -17,7 +17,10 @@
   &--active {
     height: 120px;
     background: #000;
-    opacity: 0.8;
+    opacity: 1;
+    @media (min-width: 767.98px) {
+      opacity: 0.8;
+    }
   }
   &__container {
     max-width: $maxWidthContainer;
@@ -47,7 +50,6 @@
     row-gap: toRem(3);
   }
   &__logo {
-    color: #cd481bff;
     scale: 1;
 
     transition: 0.8s;
@@ -59,24 +61,12 @@
     }
     position: relative;
     z-index: 5;
-    // &--active {
-    //   img {
-    //     background: #000;
-    //     fill: #2dcb3f !important;
-    //     padding: toRem(40);
-    //     filter: brightness(0) invert(1);
-    //     color: #cd481bff;
-    //   }
-    // }
+
     @media (max-width: 767.98px) {
       position: fixed;
       color: #fff;
       top: toRem(25);
       left: toRem(20);
-      img {
-        fill: #2dcb3f !important;
-        color: #cd481bff;
-      }
     }
   }
 }
@@ -90,14 +80,13 @@
     position: fixed;
     width: 100%;
     height: 100%;
-    background: $bgGold;
     top: 0;
-    left: 0;
+    left: -100%;
     z-index: 3;
     transition: 0.3s ease;
-    &--open {
-      left: -100%;
-      background: #bb2525;
+    &.active {
+      top: 0;
+      left: 0;
     }
   }
   &__body {
@@ -158,21 +147,6 @@
   }
 }
 
-// .header__logo {
-
-//   width: clamp(toRem(130), 15vw, toRem(216.58));
-//   &__img {
-//     width: 100%;
-//     background: red;
-//     z-index: 100;
-//     height: auto;
-//     display: block;
-//     &--active {
-//       color: red;
-//     }
-//   }
-// }
-
 .action-header {
   background: transparent;
   display: flex;
@@ -230,35 +204,38 @@
 .burger {
   &__icon {
     display: none;
-    // position: relative;
-    color: #c8d8c2;
+
+    color: $bgGold;
     width: toRem(40);
     height: toRem(40);
+    background: #ecebeb;
     @media (max-width: 767.98px) {
       //   width: toRem(100);
       //   height: toRem(100);
       display: block;
       position: fixed;
-      color: #d0ccb4ff;
+
       top: toRem(40);
       right: toRem(20);
 
-      //   justify-self: end;
-
-      //   position: fixed; // bleibt immer sichtbar, auch beim Scrollen
-      //   top: toRem(20); // Abstand von oben
-      //   right: toRem(20); // Abstand von rechts
-      z-index: 30; // liegt über allen anderen Elementen
+      z-index: 30;
       background: transparent;
       border: none;
       cursor: pointer;
     }
-
     &--active {
+      color: white;
+    }
+
+    svg {
       width: toRem(40);
       height: toRem(40);
-      color: $bgGold;
       fill: currentColor;
     }
   }
+}
+.no-scroll {
+  overflow: hidden;
+  height: 100vh;
+  touch-action: none;
 }
