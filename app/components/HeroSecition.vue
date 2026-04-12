@@ -5,7 +5,6 @@ import cat from "../img/hero/cat.svg";
 import cat2 from "../img/hero/cat2-full.svg";
 import { ref, watch } from "vue";
 
-
 const images = ref([
   { image: dog, title: "Dog" },
   { image: dog2, title: "Dog2" },
@@ -34,56 +33,54 @@ function rotateTo(index) {
     <section class="hero">
       <div class="hero__container">
         <div class="hero__content">
-          <h1 class="hero__title">A better world <br> for pets</h1>
+          <h1 class="hero__title">
+            A better world <br />
+            for pets
+          </h1>
           <a href="#" class="hero__button button button--border"
             ><span>Explore</span></a
           >
         </div>
-      
 
         <!-- /////////// -->
 
-        <div class="gallery">
+        <div class="carousel">
           <!-- MAIN -->
-          <div class="gallery__main">
-            <img
-              :src="images[0].image"
-              :alt="images[0].title"
-            />
+          <div class="carousel__main">
+            <img :src="images[0].image" :alt="images[0].title" />
           </div>
 
           <!-- THUMBS -->
-          <div class="gallery__thumbs">
+          <div class="carousel__thumbs">
             <div
               v-for="(item, i) in images"
               :key="i"
-              class="gallery__thumb"
-              :class=" { active:  i === 0 }" "
-
+              class="carousel__thumb"
+              :class="{ active: i === 0 }"
               @click="rotateTo(i)"
             >
               <img :src="item.image" :alt="item.title" />
             </div>
           </div>
-        </div>
-       
-      </div>
-      <div class="gallery__controll">
-        <button
-          @click="prev()"
-          type="button"
-          class="gallery__arrow gallery__arrow--left _icon-slider-arrow"
-        >
-          <img src="../img/hero/arrow-7.png" alt="" />
-        </button>
 
-        <button
-          @click="next()"
-          type="button"
-          class="gallery__arrow gallery__arrow--right _icon-slider-arrow"
-        >
-          <img src="../img/hero/arrow-6.png" alt="" />
-        </button>
+          <div class="carousel__controll">
+            <button
+              @click="prev()"
+              type="button"
+              class="carousel__arrow carousel__arrow--left _icon-slider-arrow"
+            >
+              <img src="../img/hero/arrow-7.png" alt="" />
+            </button>
+
+            <button
+              @click="next()"
+              type="button"
+              class="carousel__arrow carousel__arrow--right _icon-slider-arrow"
+            >
+              <img src="../img/hero/arrow-6.png" alt="" />
+            </button>
+          </div>
+        </div>
       </div>
     </section>
 
