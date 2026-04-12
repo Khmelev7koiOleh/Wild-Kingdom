@@ -130,7 +130,6 @@
 
 .menu-footer--mobile[open] .menu-footer__title::after {
   transform: rotate(180deg);
-  transition: transform 0.3s ease-in-out;
 }
 
 .menu-footer {
@@ -323,25 +322,3 @@
     padding-left: toRem(4);
   }
 }
-
-.menu-footer__title {
-}
-.menu-footer__list {
-}
-.menu-footer__item {
-}
-.menu-footer__link {
-}
-.footer__social {
-}
-
-.social__item {
-}
-.footer_logo {
-}
-.footer_subscribe {
-}
-
-// .button {
-//   background-color: transparent;
-// }

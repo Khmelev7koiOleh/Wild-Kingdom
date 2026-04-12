@@ -75,8 +75,8 @@
   &__controll {
     position: absolute;
     bottom: 5%;
-    right: 10%;
-    transform: translate(-10%, -5%);
+    right: 0;
+    transform: translate(0, -5%);
     z-index: 2;
     display: flex;
     gap: 4px;
@@ -98,7 +98,7 @@
     }
   }
   &__main {
-    width: clamp(300px, 40vw, 500px);
+    width: clamp(320px, 40vw, 500px);
     aspect-ratio: 1/1;
     margin: 0 auto;
     height: auto;
