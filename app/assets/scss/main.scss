@@ -15,3 +15,10 @@
 @use "@/assets/scss/hero" as *;
 @use "@/assets/scss/card" as *;
 // @use "@/assets/scss/swiper/css" as *;
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+}
