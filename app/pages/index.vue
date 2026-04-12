@@ -155,7 +155,7 @@ onUnmounted(() => {
     </section>
     <section class="products">
       <div class="products__container">
-        <div class="products-block-header block-header block-header--center">
+        <div class="products__block-header block-header block-header--center">
           <h2 class="block-header__label">Our Products</h2>
           <div class="block-header__title">For all your pet needs</div>
           <div class="block-header__text">
