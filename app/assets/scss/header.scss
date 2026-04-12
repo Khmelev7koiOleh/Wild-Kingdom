@@ -188,6 +188,7 @@
   @media (max-width: 767.98px) {
     &--mobile {
       display: flex;
+      column-gap: toRem(25);
     }
   }
   &--desktop {
